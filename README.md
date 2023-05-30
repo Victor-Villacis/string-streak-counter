@@ -36,4 +36,4 @@ The application is hosted on Firebase, with a Firestore database. You can access
 
 ## Write Up
 Sorry to send you to an awesome website to read the write up, but notion is fun. 
-Write Up [here]()
+Write Up [here](https://sideways-increase-bec.notion.site/Phin-Writeup-15b634e80ba94c7791a316ca71617d75)
