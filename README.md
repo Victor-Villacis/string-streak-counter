@@ -1,6 +1,19 @@
 # Extreme-To-Do
 Another TODO app for you to track what you need todo. 
 
+## Prerequisite
+Please note that the `admin-key.json` located at `server/src/admin-key.json` is **disabled**. In order for the app to work, you need to follow these steps:
+
+1. Navigate to the [Firebase Admin SDK](https://console.firebase.google.com) page.
+2. In settings select Service Accounts.
+3. Download a new private key by clicking on the "Generate new private key" button.
+4. Rename the downloaded file to `admin-key.json` and replace the existing one in the `server/src/` directory.
+5. Set up your Firestore database to the `/todos` path
+
+Ensure that you keep the `admin-key.json` file secure and do not share it publicly or check it into version control systems. It contains sensitive information that grants access to your Firebase project.
+
+  
+
 ## Installation
 To get started follow these steps:
 
