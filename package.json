@@ -16,7 +16,6 @@
         "client:build": "yarn workspace client build",
         "server:build": "yarn workspace server build"
     },
-    "dependencies": {},
     "devDependencies": {
         "concurrently": "^8.0.1"
     }

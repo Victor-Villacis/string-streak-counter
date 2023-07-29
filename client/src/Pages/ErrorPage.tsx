@@ -1,20 +1,21 @@
-import { useRouteError } from "react-router-dom";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface ErrorType {
     statusText?: string;
     message?: string;
 }
 
-const ErrorPage = () => {
-    const error = useRouteError() as ErrorType;
-    console.error(error);
+const ErrorPage: React.FC = () => {
+    const location = useLocation();
+    const error = location.state as ErrorType | undefined;
 
     return (
         <div>
-            <h1>WOW! I'm sorry</h1>
-            <p>Something unexpected has happened.</p>
-            <strong>We think this is wrong: {error?.statusText || error?.message}</strong>
-        </div >
+            <h1>Oops, something went wrong!</h1>
+            <p>{error?.statusText}</p>
+            <p>{error?.message || 'An unknown error occurred.'}</p>
+        </div>
     );
 }
 

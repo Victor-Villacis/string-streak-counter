@@ -1,80 +1,39 @@
-import { Link } from 'react-router-dom';
-import {
-    Outlet,
-} from "react-router-dom";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AppBar, Toolbar, Typography, CssBaseline, Box, InputBase, Button, } from '@mui/material';
+import React, { useState } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, Box } from '@mui/material';
 
-const theme = createTheme({
-    palette: {
-        mode: 'light',
-        primary: {
-            main: '#e65100',
-        },
-        secondary: {
-            main: '#6a1b9a',
-        },
-        background: {
-            default: '#eceff1',
-            paper: '#fff9c4',
-        },
-        text: {
-            primary: '#1b5e20',
-        },
+import { useStreaks } from '../hooks/useStreaks';
+import { theme } from '../utils/theme';
 
 
-    },
+import InputField from '../components/InputField';
+import CustomAppBar from '../components/CustomAppBar';
+import StreakDisplay from '../components/StreakDisplay';
+import SavedStreaks from '../components/SavedStreaks'
 
-});
-
-const flexWrapper = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    flexWrap: 'wrap',
-    padding: '0.5rem',
-};
-
-const marginalSpacing = {
-    margin: '10px'
-};
-
-const Home = () => {
-
+const Home: React.FC = () => {
+    const {
+        streak,
+        count,
+        streakType,
+        inputText,
+        savedStreaks,
+        handleInputChange,
+        handleClearInput,
+        handleRemoveStreak,
+        handleSave,
+    } = useStreaks();
     return (
-        <ThemeProvider theme={theme} >
+        <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar position="relative">
-                <Toolbar>
-                    <Box sx={flexWrapper}>
-                        <Box sx={{ display: 'flex', gap: '10px' }}>
-                            <Button component={Link} to="/" variant="outlined" color="inherit">Tohome</Button>
-                            <Button component={Link} to="/all" variant="outlined" color="inherit">Todos</Button>
-                            <Button component={Link} to="/today" variant="outlined" color="inherit">Todays</Button>
-                        </Box>
-                        <Typography variant="h5" sx={marginalSpacing} >
-                            <i>Extreme</i> 🚀 To-Do
-                        </Typography>
-                        <InputBase
-                            sx={{
-                                color: 'black',
-                                backgroundColor: theme.palette.background.paper,
-                                padding: '0.5rem',
-                                borderRadius: '5px',
-                            }}
-                            placeholder="Search…"
-
-                        />
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            <Box sx={{ display: 'flex' }}>
-                {/* Home is considered the root, its view is persistant across all routes/pages */}
-                {/* {All other routes/pages will be dislayed in the <Outlet /> */}
-                <Outlet />
+            <CustomAppBar />
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', minHeight: '100vh', marginTop: 4 }}>
+                <InputField handleInputChange={handleInputChange} handleClearInput={handleClearInput} inputText={inputText} handleSave={handleSave} />
+                <StreakDisplay inputText={inputText} streak={streak} count={count} streakType={streakType} />
+                <SavedStreaks streaks={savedStreaks} handleRemoveStreak={handleRemoveStreak} />
             </Box>
-        </ThemeProvider >
+        </ThemeProvider>
     );
 };
+
 export default Home;
