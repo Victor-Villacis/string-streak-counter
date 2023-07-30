@@ -51,6 +51,9 @@ export const useStreaks = () => {
 
     const handleSave = () => {
         setInputText('');
+        setStreak('');
+        setCount(0);
+        setStreakType('');
         const newSavedStreaks = [...savedStreaks, { streak, count, streakType, inputText }];
         setSavedStreaks(newSavedStreaks);
         saveToLocalStorage('savedStreaks', newSavedStreaks);
